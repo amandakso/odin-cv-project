@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import EducationInfo from './Education';
 import GeneralInfo from "./General";
+import uniqid from "uniqid";
 
 class WholeForm extends Component {
     constructor() {
@@ -11,9 +13,19 @@ class WholeForm extends Component {
           email: '',
           phone: '',
         },
+        edu: {
+            school: '',
+            degree: '',
+            gradStart: '',
+            gradEnd: '',
+            id: uniqid(),
+        },
+        edus: [],
       };
   
       this.handleInfoChange = this.handleInfoChange.bind(this);
+      this.handleEducationChange = this.handleEducationChange.bind(this);
+      this.addSchool = this.addSchool.bind(this);
     }
   
     handleInfoChange = (e) => {
@@ -24,12 +36,39 @@ class WholeForm extends Component {
       statusCopy.info[inputName] = inputValue;
       this.setState(statusCopy)
     }
+
+    handleEducationChange = (e) => {
+        let inputName = e.target.name;
+        let inputValue = e.target.value;
+    
+        let statusCopy = this.state;
+        statusCopy.edu[inputName] = inputValue;
+        this.setState(statusCopy)
+    }
+
+    addSchool = (e) => {
+        e.preventDefault()
+        this.setState({
+            info : this.state.info,
+            edu: {
+                school: '',
+                degree: '',
+                gradStart: '',
+                gradEnd: '',
+                id: uniqid(),
+            },
+            edus: this.state.edus.concat(this.state.edu)
+          });
+        document.getElementById('education').reset()
+
+
+    } 
   
     render() {
-      const { info } = this.state;
+      const { info, edu, edus } = this.state;
       return (
         <div>
-          <form>
+          <form id="general">
             <h3>General Info</h3>
             <label htmlFor="first">First Name: </label>
             <input 
@@ -59,8 +98,41 @@ class WholeForm extends Component {
               id="phone"
               onChange={this.handleInfoChange}
             />
+        </form>
+        <form id="education">
+            <h3>Education</h3>
+            <label htmlFor="school">School Name: </label>
+            <input 
+              name="school"
+              type="text"
+              id="school"
+              onChange={this.handleEducationChange}
+            />
+            <label htmlFor="degree">Degree Earned: </label>
+            <input 
+              name="degree"
+              type="text"
+              id="degree"
+              onChange={this.handleEducationChange}
+            />
+            <label htmlFor="gradStart">Start Date: </label>
+            <input 
+              name="gradStart"
+              type="text"
+              id="gradStart"
+              onChange={this.handleEducationChange}
+            />
+            <label htmlFor="gradEnd">End Date: </label>
+            <input 
+              name="gradEnd"
+              type="text"
+              id="gradEnd"
+              onChange={this.handleEducationChange}
+            />
+            <button onClick={this.addSchool}>Add School</button>
           </form>
           <GeneralInfo info={info}/>
+          <EducationInfo edus={edus}/>
         </div>
       );
     }
