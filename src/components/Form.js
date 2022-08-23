@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import EducationInfo from './Education';
-import GeneralInfo from "./General";
-import uniqid from "uniqid";
+import GeneralInfo from './General';
+import WorkInfo from './Work';
+import uniqid from 'uniqid';
 
 class WholeForm extends Component {
     constructor() {
@@ -21,11 +22,22 @@ class WholeForm extends Component {
             id: uniqid(),
         },
         edus: [],
+        job: {
+          company: '',
+          position: '',
+          description: '',
+          jobStart: '',
+          jobEnd: '',
+          id: uniqid(),
+        },
+        jobs: [],
       };
   
       this.handleInfoChange = this.handleInfoChange.bind(this);
       this.handleEducationChange = this.handleEducationChange.bind(this);
       this.addSchool = this.addSchool.bind(this);
+      this.handleWorkChange = this.handleWorkChange.bind(this);
+      this.addJob = this.addJob.bind(this);
     }
   
     handleInfoChange = (e) => {
@@ -60,12 +72,39 @@ class WholeForm extends Component {
             edus: this.state.edus.concat(this.state.edu)
           });
         document.getElementById('education').reset()
+    } 
 
+    handleWorkChange = (e) => {
+      let inputName = e.target.name;
+      let inputValue = e.target.value;
+  
+      let statusCopy = this.state;
+      statusCopy.job[inputName] = inputValue;
+      this.setState(statusCopy)
 
+    }
+
+    addJob = (e) => {
+      e.preventDefault()
+      this.setState({
+          info : this.state.info,
+          edu: this.state.edu,
+          edus: this.state.edus,
+          job: {
+            company: '',
+            position: '',
+            job: '',
+            jobStart: '',
+            jobEnd: '',
+            id: uniqid(),
+          },
+          jobs: this.state.jobs.concat(this.state.job)
+        });
+      document.getElementById('work').reset()
     } 
   
     render() {
-      const { info, edu, edus } = this.state;
+      const { info, edus, jobs } = this.state;
       return (
         <div>
           <form id="general">
@@ -131,8 +170,49 @@ class WholeForm extends Component {
             />
             <button onClick={this.addSchool}>Add School</button>
           </form>
+          <form id="work">
+            <h3>Work Experience</h3>
+            <label htmlFor="company">Company Name: </label>
+            <input
+              name="company"
+              type="text"
+              id="company"
+              onChange={this.handleWorkChange}
+            />
+            <label htmlFor="position">Position Title: </label>
+            <input
+              name="position"
+              type="text"
+              id="position"
+              onChange={this.handleWorkChange}
+            />
+            <label htmlFor="description">Job Description: </label>
+            <input
+              name="description"
+              type="text"
+              id="description"
+              onChange={this.handleWorkChange}
+            />
+            <label htmlFor="jobStart">Start Date: </label>
+            <input
+              name="jobStart"
+              type="text"
+              id="jobStart"
+              onChange={this.handleWorkChange}
+            />
+            <label htmlFor="jobEnd">End Date: </label>
+            <input
+              name="jobEnd"
+              type="text"
+              id="jobEnd"
+              onChange={this.handleWorkChange}
+            />
+            <button onClick={this.addJob}>Add Job</button>
+          </form>
+
           <GeneralInfo info={info}/>
           <EducationInfo edus={edus}/>
+          <WorkInfo jobs={jobs}/>
         </div>
       );
     }
