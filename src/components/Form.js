@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import EducationContainer from './EducationContainer';
 import GeneralInfo from './General';
 import WorkContainer from './WorkContainer';
+import PreviewForm from './Preview';
 import uniqid from 'uniqid';
 
 class WholeForm extends Component {
@@ -348,6 +349,7 @@ class WholeForm extends Component {
             <button onClick={this.updateJob}>Update</button>
           </form>
           <WorkContainer jobs={jobs} onDelete={this.deleteJob} onEdit={this.editJob}/>
+          <PreviewForm info ={info} edus={edus} jobs={jobs}/>
         </div>
       );
     }
