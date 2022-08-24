@@ -5,7 +5,7 @@ const WorkInfo = (props) => {
     return (
         <ul>
             {jobs.map((job) => {
-                return <li key={job.id}><p>{job.company}</p> <p>{job.position}</p><p>{job.description}</p>{job.jobStart} {'- '} {job.jobEnd}</li>;
+                return <li key={job.id}><p>{job.company}</p> <p>{job.position}</p><p>{job.description}</p><p>{job.jobStart} {'- '} {job.jobEnd}</p></li>;
             })}
         </ul>
     );

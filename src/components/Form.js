@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EducationInfo from './Education';
+import EducationContainer from './EducationContainer';
 import GeneralInfo from './General';
 import WorkInfo from './Work';
 import uniqid from 'uniqid';
@@ -36,6 +36,7 @@ class WholeForm extends Component {
       this.handleInfoChange = this.handleInfoChange.bind(this);
       this.handleEducationChange = this.handleEducationChange.bind(this);
       this.addSchool = this.addSchool.bind(this);
+      this.deleteSchool = this.deleteSchool.bind(this);
       this.handleWorkChange = this.handleWorkChange.bind(this);
       this.addJob = this.addJob.bind(this);
     }
@@ -73,6 +74,13 @@ class WholeForm extends Component {
           });
         document.getElementById('education').reset()
     } 
+
+    deleteSchool = (id) => {
+      this.setState((prevState) => {
+        const newEducation = prevState.edus.filter((edu) => edu.id != id)
+        return {...prevState, edus: [...newEducation]}
+      })
+    }
 
     handleWorkChange = (e) => {
       let inputName = e.target.name;
@@ -211,7 +219,7 @@ class WholeForm extends Component {
           </form>
 
           <GeneralInfo info={info}/>
-          <EducationInfo edus={edus}/>
+          <EducationContainer edus={edus} onDelete={this.deleteSchool}/>
           <WorkInfo jobs={jobs}/>
         </div>
       );
