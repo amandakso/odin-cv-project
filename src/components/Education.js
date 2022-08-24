@@ -1,20 +1,9 @@
 import React from 'react';
 
-const EducationInfo = ({id, edu, onDelete}) => {
-    console.log(id);
-    console.log(edu);
+const EducationInfo = ({id, edu, onDelete, onEdit}) => {
     return (
-    <li key={id}><p>{edu.school}</p> <p>{edu.degree}</p><p>{edu.gradStart} {'- '} {edu.gradEnd}</p><button onClick={() => onDelete(id)}>Delete</button></li>
+    <li key={id}><p>{edu.school}</p> <p>{edu.degree}</p><p>{edu.gradStart} {'- '} {edu.gradEnd}</p><button onClick={() => onDelete(id)}>Delete</button><button onClick={() => onEdit(id)}>Edit</button></li>
     );
-    /*
-    return (
-        <ul>
-            {edus.map((edu) => {
-                return <li key={edu.id}><p>{edu.school}</p> <p>{edu.degree}</p><p>{edu.gradStart} {'- '} {edu.gradEnd}</p><button onClick={() => delete(edu.id)}>Delete</button></li>;
-            })}
-        </ul>
-    );
-    */
 }
 
 export default EducationInfo;

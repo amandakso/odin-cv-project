@@ -22,6 +22,7 @@ class WholeForm extends Component {
             id: uniqid(),
         },
         edus: [],
+        eduSearch: '',
         job: {
           company: '',
           position: '',
@@ -37,6 +38,8 @@ class WholeForm extends Component {
       this.handleEducationChange = this.handleEducationChange.bind(this);
       this.addSchool = this.addSchool.bind(this);
       this.deleteSchool = this.deleteSchool.bind(this);
+      this.editSchool = this.editSchool.bind(this);
+      this.updateSchool = this.updateSchool.bind(this);
       this.handleWorkChange = this.handleWorkChange.bind(this);
       this.addJob = this.addJob.bind(this);
       this.deleteJob = this.deleteJob.bind(this);
@@ -81,6 +84,61 @@ class WholeForm extends Component {
         const newEducation = prevState.edus.filter((edu) => edu.id !== id)
         return {...prevState, edus: [...newEducation]}
       })
+    }
+
+    editSchool = (id) => {
+        console.log(id);
+        // let education = document.getElementById('education');
+        let statusCopy = this.state;
+        let search;
+        for (let i = 0; i < statusCopy.edus.length; i++) {
+          if (id === statusCopy.edus[i].id) {
+            search = statusCopy.edus[i];
+          } 
+        }
+        console.log(search.id);
+        this.setState({
+          edu: {
+              school: search.school,
+              degree: search.degree,
+              gradStart: search.gradStart,
+              gradEnd: search.gradEnd,
+              id: uniqid(),
+          },
+          eduSearch: search.id,
+        });
+        let school = document.getElementById('school');
+        let degree = document.getElementById('degree');
+        let gradStart = document.getElementById('gradStart');
+        let gradEnd = document.getElementById('gradEnd');
+        
+        school.value = search.school;
+        degree.value = search.degree;
+        gradStart.value = search.gradStart;
+        gradEnd.value = search.gradEnd;
+        
+    }
+
+    updateSchool = (e) => {
+      e.preventDefault();
+      let statusCopy = this.state;
+      let old = statusCopy.eduSearch;
+      let educations = statusCopy.edus;
+      let updated = educations.map((edu) => {
+        if (edu.id === old) {
+          return {...edu,
+            school: statusCopy.edu.school,
+            degree: statusCopy.edu.degree,
+            gradStart: statusCopy.edu.gradStart,
+            gradEnd: statusCopy.edu.gradEnd,
+            id: statusCopy.edu.id,
+          };
+        }
+        return edu;
+      })
+    
+      this.setState({edus: updated})
+    
     }
 
     handleWorkChange = (e) => {
@@ -184,7 +242,8 @@ class WholeForm extends Component {
               id="gradEnd"
               onChange={this.handleEducationChange}
             />
-            <button onClick={this.addSchool}>Add School</button>
+            <button onClick={this.addSchool}>Add</button>
+            <button onClick={this.updateSchool}>Update</button>
           </form>
           <form id="work">
             <h3>Work Experience</h3>
@@ -227,11 +286,12 @@ class WholeForm extends Component {
           </form>
 
           <GeneralInfo info={info}/>
-          <EducationContainer edus={edus} onDelete={this.deleteSchool}/>
+          <EducationContainer edus={edus} onDelete={this.deleteSchool} onEdit ={this.editSchool}/>
           <WorkContainer jobs={jobs} onDelete={this.deleteJob}/>
         </div>
       );
     }
-  }
+}
+
 
   export default WholeForm;
