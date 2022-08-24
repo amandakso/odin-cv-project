@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import EducationInfo from './Education';
 
 const EducationContainer =({edus, onDelete}) => {

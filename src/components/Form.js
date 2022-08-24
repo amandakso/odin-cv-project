@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import EducationContainer from './EducationContainer';
 import GeneralInfo from './General';
-import WorkInfo from './Work';
+import WorkContainer from './WorkContainer';
 import uniqid from 'uniqid';
 
 class WholeForm extends Component {
@@ -39,6 +39,7 @@ class WholeForm extends Component {
       this.deleteSchool = this.deleteSchool.bind(this);
       this.handleWorkChange = this.handleWorkChange.bind(this);
       this.addJob = this.addJob.bind(this);
+      this.deleteJob = this.deleteJob.bind(this);
     }
   
     handleInfoChange = (e) => {
@@ -77,7 +78,7 @@ class WholeForm extends Component {
 
     deleteSchool = (id) => {
       this.setState((prevState) => {
-        const newEducation = prevState.edus.filter((edu) => edu.id != id)
+        const newEducation = prevState.edus.filter((edu) => edu.id !== id)
         return {...prevState, edus: [...newEducation]}
       })
     }
@@ -110,6 +111,13 @@ class WholeForm extends Component {
         });
       document.getElementById('work').reset()
     } 
+
+    deleteJob = (id) => {
+      this.setState((prevState) => {
+        const newJob = prevState.jobs.filter((job) => job.id !== id)
+        return {...prevState, jobs: [...newJob]}
+      })
+    }
   
     render() {
       const { info, edus, jobs } = this.state;
@@ -220,7 +228,7 @@ class WholeForm extends Component {
 
           <GeneralInfo info={info}/>
           <EducationContainer edus={edus} onDelete={this.deleteSchool}/>
-          <WorkInfo jobs={jobs}/>
+          <WorkContainer jobs={jobs} onDelete={this.deleteJob}/>
         </div>
       );
     }

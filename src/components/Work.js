@@ -1,13 +1,8 @@
 import React from 'react';
 
-const WorkInfo = (props) => {
-    const {jobs} = props;
+const WorkInfo = ({id, job, onDelete}) => {
     return (
-        <ul>
-            {jobs.map((job) => {
-                return <li key={job.id}><p>{job.company}</p> <p>{job.position}</p><p>{job.description}</p><p>{job.jobStart} {'- '} {job.jobEnd}</p></li>;
-            })}
-        </ul>
+    <li key={id}><p>{job.company}</p> <p>{job.position}</p><p>{job.description}</p><p>{job.jobStart} {'- '} {job.jobEnd}</p><button onClick={() => onDelete(id)}>Delete</button></li>
     );
 }
 
