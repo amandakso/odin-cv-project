@@ -272,6 +272,7 @@ class WholeForm extends Component {
               onChange={this.handleInfoChange}
             />
         </form>
+        <GeneralInfo info={info}/>
         <form id="education">
             <h3>Education</h3>
             <label htmlFor="school">School Name: </label>
@@ -305,6 +306,7 @@ class WholeForm extends Component {
             <button onClick={this.addSchool}>Add</button>
             <button onClick={this.updateSchool}>Update</button>
           </form>
+          <EducationContainer edus={edus} onDelete={this.deleteSchool} onEdit ={this.editSchool}/>
           <form id="work">
             <h3>Work Experience</h3>
             <label htmlFor="company">Company Name: </label>
@@ -345,9 +347,6 @@ class WholeForm extends Component {
             <button onClick={this.addJob}>Add</button>
             <button onClick={this.updateJob}>Update</button>
           </form>
-
-          <GeneralInfo info={info}/>
-          <EducationContainer edus={edus} onDelete={this.deleteSchool} onEdit ={this.editSchool}/>
           <WorkContainer jobs={jobs} onDelete={this.deleteJob} onEdit={this.editJob}/>
         </div>
       );
