@@ -13,12 +13,29 @@
     margin-left: 20px;
 }
 
+.right {
+    margin: 50px;
+    border: solid black 2px;
+    font-size: 16px;
+}
+
 .generalInfo, .eduInfo, .workInfo {
     padding: 20px 0px;
 }
 
-input {
+.cv {
+    margin: 30px;
+}
+.contactInfo {
+    text-align: right;
+}
+
+input{
     margin-bottom: 5px;
+}
+
+.eduSection, .workSection {
+    margin-bottom: 20px;
 }
 
 button {

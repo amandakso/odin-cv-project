@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PreviewForm =({info, jobs, edus}) => {
-    const information = (<ul>
+    const information = (<ul className="contactInfo">
     <li>{info.first} {info.last}</li>
     <li>{info.email}</li>
     <li>{info.phone}</li>
@@ -14,14 +14,22 @@ const PreviewForm =({info, jobs, edus}) => {
     ));
 
     return(
-       <div>
-        {information}
-        <ul>
-            {educations}
-        </ul>
-        <ul>
-        {works}
-        </ul>
+       <div className="cv">
+        <div>
+            {information}
+        </div>
+        <div className="eduSection">
+            <h4>Education: </h4>
+            <ul>
+                {educations}
+            </ul>
+        </div>
+        <div className="workSection">
+            <h4>Work Experience: </h4>
+            <ul>
+            {works}
+            </ul>
+        </div>
        </div>
     );
 }
