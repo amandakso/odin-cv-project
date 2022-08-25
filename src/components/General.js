@@ -3,7 +3,7 @@ import React from 'react';
 const GeneralInfo = (props) => {
     const {info} = props;
     return (
-        <ul>
+        <ul className="generalInfo">
             <li>{info.first} {info.last}</li>
             <li>{info.email}</li>
             <li>{info.phone}</li>

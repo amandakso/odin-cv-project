@@ -10,7 +10,7 @@ const PreviewForm =({info, jobs, edus}) => {
     ));
 
     const works = jobs.map((job) => (
-        <li key={job.id}><p>{job.company}</p> <p>{job.position}</p><p>{job.description}</p><p>{job.jobStart} {'- '} {job.jobEnd}</p>t</li>
+        <li key={job.id}><p>{job.company}</p> <p>{job.position}</p><p>{job.description}</p><p>{job.jobStart} {'- '} {job.jobEnd}</p></li>
     ));
 
     return(

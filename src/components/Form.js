@@ -3,6 +3,7 @@ import EducationContainer from './EducationContainer';
 import GeneralInfo from './General';
 import WorkContainer from './WorkContainer';
 import PreviewForm from './Preview';
+import '../styles/wholeForm.css';
 import uniqid from 'uniqid';
 
 class WholeForm extends Component {
@@ -182,7 +183,6 @@ class WholeForm extends Component {
 
 
     editJob = (id) => {
-      console.log(id);
       let statusCopy = this.state;
       let search;
       for (let i = 0; i < statusCopy.jobs.length; i++) {
@@ -241,115 +241,119 @@ class WholeForm extends Component {
     render() {
       const { info, edus, jobs } = this.state;
       return (
-        <div>
-          <form id="general">
-            <h3>General Info</h3>
-            <label htmlFor="first">First Name: </label>
-            <input 
-              name="first"
-              type="text" 
-              id="first"
-              onChange={this.handleInfoChange}
-            />
-            <label htmlFor="last">Last Name: </label>
-            <input 
-              name="last"
-              type="text" 
-              id="last"
-              onChange={this.handleInfoChange}
-            />
-            <label htmlFor="email"> Email Address: </label>
-            <input  
-              name="email"
-              type="email" 
-              id="email"
-              onChange={this.handleInfoChange}
-            />
-            <label htmlFor="phone">Phone Number: </label>
-            <input 
-              name="phone"
-              type="text" 
-              id="phone"
-              onChange={this.handleInfoChange}
-            />
-        </form>
-        <GeneralInfo info={info}/>
-        <form id="education">
-            <h3>Education</h3>
-            <label htmlFor="school">School Name: </label>
-            <input 
-              name="school"
-              type="text"
-              id="school"
-              onChange={this.handleEducationChange}
-            />
-            <label htmlFor="degree">Degree Earned: </label>
-            <input 
-              name="degree"
-              type="text"
-              id="degree"
-              onChange={this.handleEducationChange}
-            />
-            <label htmlFor="gradStart">Start Date: </label>
-            <input 
-              name="gradStart"
-              type="text"
-              id="gradStart"
-              onChange={this.handleEducationChange}
-            />
-            <label htmlFor="gradEnd">End Date: </label>
-            <input 
-              name="gradEnd"
-              type="text"
-              id="gradEnd"
-              onChange={this.handleEducationChange}
-            />
-            <button onClick={this.addSchool}>Add</button>
-            <button onClick={this.updateSchool}>Update</button>
+        <div className="container">
+          <div className="left">
+            <form id="general">
+              <h3>General Info</h3>
+              <label htmlFor="first">First Name: </label>
+              <input 
+                name="first"
+                type="text" 
+                id="first"
+                onChange={this.handleInfoChange}
+              /><br/>
+              <label htmlFor="last">Last Name: </label>
+              <input 
+                name="last"
+                type="text" 
+                id="last"
+                onChange={this.handleInfoChange}
+              /><br/>
+              <label htmlFor="email"> Email Address: </label>
+              <input  
+                name="email"
+                type="email" 
+                id="email"
+                onChange={this.handleInfoChange}
+              /><br/>
+              <label htmlFor="phone">Phone Number: </label>
+              <input 
+                name="phone"
+                type="text" 
+                id="phone"
+                onChange={this.handleInfoChange}
+              /><br/>
           </form>
-          <EducationContainer edus={edus} onDelete={this.deleteSchool} onEdit ={this.editSchool}/>
-          <form id="work">
-            <h3>Work Experience</h3>
-            <label htmlFor="company">Company Name: </label>
-            <input
-              name="company"
-              type="text"
-              id="company"
-              onChange={this.handleWorkChange}
-            />
-            <label htmlFor="position">Position Title: </label>
-            <input
-              name="position"
-              type="text"
-              id="position"
-              onChange={this.handleWorkChange}
-            />
-            <label htmlFor="description">Job Description: </label>
-            <input
-              name="description"
-              type="text"
-              id="description"
-              onChange={this.handleWorkChange}
-            />
-            <label htmlFor="jobStart">Start Date: </label>
-            <input
-              name="jobStart"
-              type="text"
-              id="jobStart"
-              onChange={this.handleWorkChange}
-            />
-            <label htmlFor="jobEnd">End Date: </label>
-            <input
-              name="jobEnd"
-              type="text"
-              id="jobEnd"
-              onChange={this.handleWorkChange}
-            />
-            <button onClick={this.addJob}>Add</button>
-            <button onClick={this.updateJob}>Update</button>
-          </form>
-          <WorkContainer jobs={jobs} onDelete={this.deleteJob} onEdit={this.editJob}/>
-          <PreviewForm info ={info} edus={edus} jobs={jobs}/>
+          <GeneralInfo info={info}/>
+          <form id="education">
+              <h3>Education</h3>
+              <label htmlFor="school">School Name: </label>
+              <input 
+                name="school"
+                type="text"
+                id="school"
+                onChange={this.handleEducationChange}
+              /><br/>
+              <label htmlFor="degree">Degree Earned: </label>
+              <input 
+                name="degree"
+                type="text"
+                id="degree"
+                onChange={this.handleEducationChange}
+              /><br/>
+              <label htmlFor="gradStart">Start Date: </label>
+              <input 
+                name="gradStart"
+                type="text"
+                id="gradStart"
+                onChange={this.handleEducationChange}
+              /><br/>
+              <label htmlFor="gradEnd">End Date: </label>
+              <input 
+                name="gradEnd"
+                type="text"
+                id="gradEnd"
+                onChange={this.handleEducationChange}
+              /><br/>
+              <button onClick={this.addSchool}>Add</button>
+              <button onClick={this.updateSchool}>Update</button>
+            </form>
+            <EducationContainer edus={edus} onDelete={this.deleteSchool} onEdit ={this.editSchool}/>
+            <form id="work">
+              <h3>Work Experience</h3>
+              <label htmlFor="company">Company Name: </label>
+              <input
+                name="company"
+                type="text"
+                id="company"
+                onChange={this.handleWorkChange}
+              /><br/>
+              <label htmlFor="position">Position Title: </label>
+              <input
+                name="position"
+                type="text"
+                id="position"
+                onChange={this.handleWorkChange}
+              /><br/>
+              <label htmlFor="description">Job Description: </label>
+              <input
+                name="description"
+                type="text"
+                id="description"
+                onChange={this.handleWorkChange}
+              /><br/>
+              <label htmlFor="jobStart">Start Date: </label>
+              <input
+                name="jobStart"
+                type="text"
+                id="jobStart"
+                onChange={this.handleWorkChange}
+              /><br/>
+              <label htmlFor="jobEnd">End Date: </label>
+              <input
+                name="jobEnd"
+                type="text"
+                id="jobEnd"
+                onChange={this.handleWorkChange}
+              /><br/>
+              <button onClick={this.addJob}>Add</button>
+              <button onClick={this.updateJob}>Update</button>
+            </form>
+            <WorkContainer jobs={jobs} onDelete={this.deleteJob} onEdit={this.editJob}/>
+          </div>
+          <div className="right"> 
+            <PreviewForm info ={info} edus={edus} jobs={jobs}/>
+          </div>
         </div>
       );
     }

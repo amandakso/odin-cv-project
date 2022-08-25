@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.left {
+    margin-left: 20px;
+}
+
+.generalInfo, .eduInfo, .workInfo {
+    padding: 20px 0px;
+}
+
+input {
+    margin-bottom: 5px;
+}
+
+button {
+    padding: 4px 12px;
+    min-width: 75px;
+    border-radius: 12px;
+    margin: 5px;
+}

@@ -12,7 +12,7 @@ const EducationContainer =({edus, onDelete, onEdit}) => {
     ));
 
   return (
-    <div>
+    <div className="eduInfo">
         {educations}
     </div>
     );

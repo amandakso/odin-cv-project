@@ -12,7 +12,7 @@ const WorkContainer =({jobs, onDelete, onEdit}) => {
     ));
 
   return (
-    <div>
+    <div className="workInfo">
         {works}
     </div>
     );
