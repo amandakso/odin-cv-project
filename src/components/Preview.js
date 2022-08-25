@@ -3,8 +3,8 @@ import React from 'react';
 const PreviewForm =({info, jobs, edus}) => {
     const information = (<ul className="contactInfo">
     <li>{info.first} {info.last}</li>
-    <li>{info.email}</li>
-    <li>{info.phone}</li>
+    <li>Email: {info.email}</li>
+    <li>Phone: {info.phone}</li>
 </ul>)
     const educations = edus.map((edu) => ( <li key={edu.id}><p>{edu.school}</p> <p>{edu.degree}</p><p>{edu.gradStart} {'- '} {edu.gradEnd}</p></li>
     ));
